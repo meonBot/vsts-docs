@@ -10,14 +10,14 @@ author: chcomley
 ms.reviewer: gopinach
 ms.topic: quickstart
 monikerRange: '>= tfs-2018'
-ms.date: 08/26/2020 
+ms.date: 02/05/2021
 ---
 
 # Add and edit wiki pages
 
 [!INCLUDE [temp](../../includes/version-vsts-tfs-2018.md)]
 
-You can add a title and content to a page, once the [Wiki Git repository is provisioned](./wiki-create-repo.md) for your team project. There's a side-by-side edit and preview experience where you can edit the page and preview the content as you go.
+You can add a title and content to a page, once the [wiki Git repository is provisioned](./wiki-create-repo.md) for your team project. There's a side-by-side edit and preview experience where you can edit the page and preview the content as you go.
 
 Learn how to do the following tasks:  
 
@@ -34,7 +34,7 @@ While you author pages using [Markdown format](./markdown-guidance.md), you can 
 > [!div class="mx-imgBorder"]  
 > ![Wiki home page](media/wiki/wiki-edit.png)
 
-As you edit the page, save it by entering **Ctrl+S**. To save with a custom revision message, select :::image type="icon" source="../../media/icons/context-menu.png" border="false":::next to **Save**. For additional shortcuts, see [Keyboard shortcuts to manage Wiki pages](wiki-keyboard-shortcuts.md).
+As you edit the page, save it by entering **Ctrl+S**. To save with a custom revision message, select :::image type="icon" source="../../media/icons/context-menu.png" border="false":::next to **Save**. For more shortcuts, see [Keyboard shortcuts to manage wiki pages](wiki-keyboard-shortcuts.md).
 
 > [!div class="mx-imgBorder"]  
 > ![Save page with a custom message](media/wiki/wiki-save-with-message.png)
@@ -67,6 +67,7 @@ As you edit the page, save it by entering **Ctrl+S**. To save with a custom revi
 
 * You must have a provisioned wiki. If your wiki hasn't yet been created, [create it now](wiki-create-repo.md).
 * You must be a member of the team project as a contributor to add or update wiki pages.
+* You must have Basic access level to edit the project wiki.
 
 <a id="open-wiki">  </a>
 
@@ -80,12 +81,12 @@ As you edit the page, save it by entering **Ctrl+S**. To save with a custom revi
 
 To add another page, choose **New page**. Or, to add a subpage, open the context menu of an existing page and select **Add subpage**.
 
-Specify a unique title of 235 characters or less. Page titles are case-sensitive. For other title restrictions, see [Wiki Git repository files and file structure, File naming conventions](wiki-file-structure.md#file-naming).
+Specify a unique title of 235 characters or less. Page titles are case-sensitive. For other title restrictions, see [Wiki Git repository files and file structure, File naming conventions](wiki-file-structure.md#file-naming-conventions).
 
 > [!div class="mx-imgBorder"]  
 > ![Create wiki and first page](media/wiki/add-new-page.png)
 
-You can also use keyboard shortcuts to add a new page by pressing **n** or add a subpage by pressing **c**. For a complete list of keyboard shortcuts, see [Keyboard shortcuts to manage Wiki pages](wiki-keyboard-shortcuts.md).
+You can also use keyboard shortcuts to add a new page by pressing **n** or add a subpage by pressing **c**. For a complete list of keyboard shortcuts, see [Keyboard shortcuts to manage wiki pages](wiki-keyboard-shortcuts.md).
 
 #### [Azure DevOps CLI](#tab/azure-devops-cli)
 
@@ -111,7 +112,7 @@ az devops wiki page create --path
 - **--wiki**: Required. Name or ID of the wiki.
 -  **--comment**: Optional. Comment in the commit message of file add operation. Default value: Added a new page using Azure DevOps CLI.
 -  **--content**: Optional. Content of the wiki page. Ignored if --file-path is specified. 
--  **--encoding**: Optional. Encoding of the file. Used in conjunction with --file-path parameter.
+-  **--encoding**: Optional. Encoding of the file. Used with --file-path parameter.
 accepted values: ascii, utf-16be, utf-16le, utf-8
 -  **--file-path**: Optional. Path of the file input if content is specified in the file.    
 -  **--project -p**: Required if not configured as default or picked up via git config. Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. 
@@ -153,7 +154,7 @@ az devops wiki page update --path 'my page' --wiki myprojectwiki --file-path a.t
 
 #### [Browser](#tab/browser) 
 
-To edit an existing Wiki page, open the page and select **Edit**, or open the context menu and select **Edit**. You can also use keyboard shortcut **e** to quickly go to the edit of the current page. 
+To edit an existing wiki page, open the page and select **Edit**, or open the context menu and select **Edit**. You can also use keyboard shortcut **e** to quickly go to the edit of the current page. 
 
 ::: moniker range=">= azure-devops-2020"
 
@@ -281,7 +282,7 @@ To change the parent-child relationship of a page, open its context menu and sel
 > [!div class="mx-imgBorder"]  
 > ![Move wiki page in the hierarchy](media/wiki/wiki-move-page.png)
 
-For a complete list of keyboard shortcuts, see [Keyboard shortcuts to manage Wiki pages](wiki-keyboard-shortcuts.md).
+For a complete list of keyboard shortcuts, see [Keyboard shortcuts to manage wiki pages](wiki-keyboard-shortcuts.md).
 
 ## Make a page the wiki home page
 

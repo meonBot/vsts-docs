@@ -5,11 +5,11 @@ description: Email or print work items to share information in Azure Boards, Azu
 ms.custom: work-items, seodec18
 ms.technology: devops-agile
 ms.assetid: B2E9B082-15BE-448C-96D8-3EF048A15560
-ms.topic: conceptual
+ms.topic: how-to
 ms.author: kaelli
 author: KathrynEE
 monikerRange: '<= azure-devops'
-ms.date: 11/30/2020
+ms.date: 05/21/2021
 ---
 
 
@@ -146,7 +146,7 @@ You can quickly email a summary of one or more work items. Summaries include the
 
 <a id="team-services-email" />  
 
-#### [Browser](#tab/browser/)
+#### [Web portal](#tab/browser/)
 
 ::: moniker range=">= tfs-2018"  
 
@@ -210,7 +210,7 @@ Another way to share items is by emailing summary lists, such as a sprint summar
 Depending on the option and client you choose, summary lists may or may not include a hyperlink to the work item ID.  
 
 
-#### [Browser](#tab/browser/)
+#### [Web portal](#tab/browser/)
 
 ::: moniker range=">= tfs-2017"  
 
@@ -305,6 +305,12 @@ To print the details of a work item, open a query in Visual Studio that contains
 ![Print work items from Team Explorer](../queries/media/share-plans-print-work-item-details.png)   
 
 
+<a id="print-cards"></a>
+
+## Print work items as cards
+
+Some teams want to work with physical cards when planning or updating their physical Kanban or Scrum task boards. There is no native support for printing work items as cards. However, you may find a solution from the [Azure DevOps Marketplace](https://marketplace.visualstudio.com/search?term=card&target=AzureDevOps&category=Azure%20Boards&sortBy=Relevance).   
+
 <a id="copy-url">  </a>
 
 ## Copy the URL to a single work item  
@@ -312,7 +318,7 @@ To print the details of a work item, open a query in Visual Studio that contains
 > [!NOTE]   
 > All URLs you copy, regardless of the client you use to copy them, opens the work item in the web portal. 
 
-#### [Browser](#tab/browser/)
+#### [Web portal](#tab/browser/)
 
 ::: moniker range=">= tfs-2017"  
 
@@ -363,7 +369,7 @@ To print the details of a work item, open a query in Visual Studio that contains
 
 ## Export list as CSV 
 
-From any query, you can export a list of work items as a comma-delimited list. Simply [open the query](../queries/view-run-query.md), choose the :::image type="icon" source="../../media/icons/actions-icon.png" border="false"::: actions icon, and choose <strong>Export to CSV</strong>.
+From any query, you can export a list of work items as a comma-delimited list. Simply open the query, choose the :::image type="icon" source="../../media/icons/actions-icon.png" border="false"::: actions icon, and choose <strong>Export to CSV</strong>. To learn more, see [Bulk import or update work items using CSV files](../queries/import-work-items-from-csv.md).
 
 ::: moniker-end
 
@@ -394,9 +400,20 @@ You may find additional ways to share information by exporting work items to oth
 
 ## Related articles  
 
-- [Use templates to add and update work items](../backlogs/work-item-template.md)  
+::: moniker range="azure-devops"
+
+- [Use templates to add and update work items](../backlogs/work-item-template.md) 
+- [Share information in work items and social tools](../queries/share-plans.md) 
+- [Define the hyperlink for a work item](work-item-url-hyperlink.md)  
+
+
+::: moniker-end
+
+::: moniker range="< azure-devops"
+
+- [Use templates to add and update work items](../backlogs/work-item-template.md) 
 - [Share information in work items and social tools](../queries/share-plans.md) 
 - [Define the hyperlink for a work item](work-item-url-hyperlink.md)  
 - [Configure an SMTP server](/azure/devops/server/admin/setup-customize-alerts)
 
-
+::: moniker-end

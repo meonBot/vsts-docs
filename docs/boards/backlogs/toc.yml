@@ -2,13 +2,16 @@
   href: backlogs-overview.md
 - name: Create your backlog
   href: create-your-backlog.md
-  displayname: product backlog, reorder, details, description, acceptance criteria, effort, story points, size, business value,    
+  displayname: product backlog, reorder, details, description, acceptance criteria, effort, story points, size, business value,  
 - name: Define features & epics
   href: define-features-epics.md
   displayname: portfolio backlog, critical path, value area, business value, time criticality, target date 
 - name: Organize your backlog (map or reparent)
   href: organize-backlog.md
   displayname: tree hierarchy, expand, collapse, mapping, reorder, display rollup   
+- name: Filter your backlogs
+  href: filter-backlogs-boards-plans.md
+  displayname: sort, reorder, rollup, group, parent, tags
 - name: Forecast
   displayname: velocity, sprints, iterations  
   href: ../sprints/forecast.md
@@ -21,8 +24,6 @@
   - name: Display rollup progress bars or totals
     href: display-rollup.md
     displayname: In Progress items, Completed child items, Progress by, Count of, Sum of, quick list, custom rollup, column metric  
-  - name: "Filter backlogs & queries"
-    href: filter-backlogs.md
   - name: Select backlog levels
     href: ../../organizations/settings/select-backlog-navigation-levels.md?bc=%252fazure%252fdevops%252fboards%252fbreadcrumb%252ftoc.json&toc=%252fazure%252fdevops%252fboards%252ftoc.json
   - name: Show bugs on backlogs & boards
@@ -31,8 +32,10 @@
   items:
   - name: Refine your backlog
     href: best-practices-product-backlog.md
+    displayname: product owner, role, acceptance criteria, spikes
   - name: Rollup of work & other fields
     href: ../../reference/xml/support-rollup-of-work-and-other-fields.md?toc=/azure/devops/boards/toc.json&bc=/azure/devops/boards/breadcrumb/toc.json
+    displayname: native, Planning pane, tools, query charts, Excel
   - name: View/configure velocity
     href: ../../report/dashboards/team-velocity.md?toc=/azure/devops/boards/toc.json&bc=/azure/devops/boards/breadcrumb/toc.json 
 

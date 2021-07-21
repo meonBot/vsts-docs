@@ -183,7 +183,7 @@ This tutorial assumes you have a yaml pipeline with a single stage that deploys 
 
 ### Q: What versions of ServiceNow are supported?
 
-**A**: The integration is compatible with Kingston and above ServiceNow versions.
+**A**: The integration is compatible with Kingston, London, and New York versions of ServiceNow.
 
 ### Q: What types of change request can be managed with the integration?
 
@@ -203,8 +203,8 @@ transform map must be added. See [ServiceNow Change Management Extension](https:
 ### Q: I don't see drop-down values populated for Category, Status, and others. What should I do?
 
 **A**: Change Management Core and Change Management - State Model plugins must be active on your ServiceNow instance for the drop-downs to work.
-See [Upgrade change management](https://docs.servicenow.com/bundle/istanbul-it-service-management/page/product/change-management/task/migrate-change-mgmt-pre-geneva.html)
-and [Update change request states](https://docs.servicenow.com/bundle/istanbul-it-service-management/page/product/change-management/task/state-model-activate-tasks.html) for more details.
+See [Upgrade change management](https://docs.servicenow.com/bundle/quebec-it-service-management/page/product/change-management/task/migrate-change-mgmt-pre-geneva.html)
+and [Update change request states](https://docs.servicenow.com/bundle/quebec-it-service-management/page/product/change-management/task/state-model-activate-tasks.html) for more details.
 
 ## Related topics
 

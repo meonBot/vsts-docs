@@ -9,7 +9,7 @@ ms.custom: has-adal-ref
 ms.author: kaelli
 author: KathrynEE
 monikerRange: '<= azure-devops'
-ms.date: 12/07/2020
+ms.date: 01/25/2021
 ---
 
 # Security key concepts
@@ -54,7 +54,10 @@ Authorization refers to the operations performed to verify that the identity whi
 
 ## Azure Active Directory Authentication Libraries
 
-The Azure Active Directory Authentication Library (ADAL) v1.0 enables application developers to authenticate users to cloud or on-premises Active Directory (AD), and obtain tokens for securing API calls. To learn more about its usage with Azure DevOps, see [Choose the right authentication mechanism](../../integrate/get-started/authentication/authentication-guidance.md). 
+The Azure Active Directory Authentication Library (ADAL) v1.0 enables application developers to authenticate users to cloud or on-premises Active Directory (AD), and obtain tokens for securing API calls.
+> [!IMPORTANT]
+> **Starting, June 30th, 2020**, we'll no longer add any new features to ADAL and Azure AD Graph. We'll continue to provide technical support and security updates, but won't provide feature updates.
+> **Starting June 30th, 2022**, we'll end support for ADAL and Azure AD Graph and won't provide technical support or security updates. Apps using Azure AD Graph after this time will no longer receive responses from the Azure AD Graph endpoint. Apps using ADAL on existing OS versions will continue to work after this time but will not get any technical support or security updates.  
 
 ## Basic member
 
@@ -68,12 +71,16 @@ Conditional access provides support for securing Azure DevOps resources backed b
 
 ## Inheritance
 
-Permissions that aren't directly allowed or denied for a user, may be inherited. To learn more, see [About permissions, access, and security groups](about-permissions.md).   
+Permissions that aren't directly allowed or denied for a user, may be inherited. To learn more, see [Get started with permissions, access, and security groups](../security/about-permissions.md).   
 
 <!---
 ## Membership 
 
 -->
+
+## Microsoft Authentication Library
+
+The Microsoft Authentication Library (MSAL) enables application developers to acquire tokens from the Microsoft identity platform to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API. MSAL supports many different application architectures and platforms including .NET, JavaScript, Java, Python, Android, and iOS. For more information, see the [Overview of Microsoft Authentication Library](/azure/active-directory/develop/msal-overview#languages-and-frameworks).
 
 ## Namespace 
 
@@ -110,11 +117,11 @@ Personal access tokens (PATs) are alternate passwords that you can use to authen
 
 ## Permission
 
-The assignment made to a user or group to use a feature or function. Permissions are assigned to default security groups. To learn more, see [About permissions, access, and security groups](about-permissions.md).
+The assignment made to a user or group to use a feature or function. Permissions are assigned to default security groups. To learn more, see [Get started with permissions, access, and security groups](../security/about-permissions.md).
 
 ## Permission state
 
-The state assigned to a feature or function to a user's or group's permission. Users have permission to access a feature if their permission is set to **Allow** or **Inherited Allow**. They don't have permission when the state is set to **Deny**, **Inherited deny**, or **Not set**. To learn more, see [About permissions, access, and security groups](about-permissions.md).
+The state assigned to a feature or function to a user's or group's permission. Users have permission to access a feature if their permission is set to **Allow** or **Inherited Allow**. They don't have permission when the state is set to **Deny**, **Inherited deny**, or **Not set**. To learn more, see [Get started with permissions, access, and security groups](../security/about-permissions.md).
 
 
 ## Role-based permissions
@@ -123,7 +130,7 @@ A security model that limits actions based on membership within a role and permi
 
 ## Security group
 
-A method by which you can organize users and other domain objects to simplify administration of permissions and access. Azure DevOps  support a number of default security groups as well as the ability to create custom groups. To learn more, see [About permissions, access, and security groups](about-permissions.md).
+A method by which you can organize users and other domain objects to simplify administration of permissions and access. Azure DevOps  support a number of default security groups as well as the ability to create custom groups. To learn more, see [Get started with permissions, access, and security groups](../security/about-permissions.md).
 
 ## Service account
 
@@ -175,7 +182,7 @@ For Azure DevOps Server, see [Use TFSSecurity to manage groups and permissions f
 
 ## Valid users
 
-Valid users are users that are recognized by Azure DevOps as being able to connect to the account or a project. When you add accounts of users directly to a built-in group or through a Windows, Active Directory, or Azure Active Directory group, they are automatically added to one of the valid user groups. To learn more, see [About permissions and inheritance](about-permissions.md).
+Valid users are users that are recognized by Azure DevOps as being able to connect to the account or a project. When you add accounts of users directly to a built-in group or through a Windows, Active Directory, or Azure Active Directory group, they are automatically added to one of the valid user groups. To learn more, see [Get started with permissions, access, and security groups](about-permissions.md).
 
 
 

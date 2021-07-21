@@ -38,8 +38,8 @@ Use this task to deploy, start, stop, and delete Azure Resource Groups.
 |`csmParametersFileLink`<br/>Template parameters link|(Optional) Specify the URL of the parameters file. <br/> **Example**: https://raw.githubusercontent.com/Azure/... <br/>To use a file stored in a private storage account, retrieve and include the shared access signature (SAS) token in the URL of the template. <br/> **Example:** **<blob_storage_url>/template.json?<SAStoken>**. <br/>To upload a parameters file to a storage account and generate a SAS token, you could use Azure file copy task or follow the steps using PowerShell or Azure CLI. <br/>To  view the template parameters in a grid, click on **...** next to Override template parameters text box. This feature requires that CORS rules are enabled at the source. If templates are in Azure storage blob, refer to this to enable CORS. |
 |`csmFile`<br/>Template|(Required) Specify the path or a pattern pointing to the Azure Resource Manager template. For more information about the templates see https://aka.ms/azuretemplates. To get started immediately use template https://aka.ms/sampletemplate. |
 |`csmParametersFile`<br/>Template parameters|(Optional) Specify the path or a pattern pointing for the parameters file for the Azure Resource Manager template.|
-|`overrideParameters`<br/>Override template parameters|(Optional) To view the template parameters in a grid, click on **...** next to Override Parameters textbox. This feature requires that CORS rules are enabled at the source. If templates are in Azure storage blob, refer to this to enable CORS. Or type the template parameters to override in the textbox. <br/>**Example**: **–storageName fabrikam –adminUsername $(vmusername) -adminPassword $(password) –azureKeyVaultName $(fabrikamFibre)**.<br/>If the parameter value you're using has multiple words, enclose them in quotes, even if you're passing them using variables. <br/>**For example**, **-name "parameter value" -name2 "$(var)"**. <br/>To override object type parameters use stringified JSON objects. <br/>**For example**, **-options ["option1"] -map {"key1": "value1" }**.|
-|`deploymentMode`<br/>Deployment mode|(Required) Incremental mode handles deployments as incremental updates to the resource group. It leaves unchanged resources that exist in the resource group but are not specified in the template. Complete mode deletes resources that are not in your template. Validate mode enables you to find problems with the template before creating actual resources. <br/>Default value: `Incremental`|
+|`overrideParameters`<br/>Override template parameters|(Optional) To view the template parameters in a grid, click on **...** next to Override Parameters textbox. This feature requires that CORS rules are enabled at the source. If templates are in Azure storage blob, refer to this to enable CORS. Or type the template parameters to override in the textbox. <br/>**Example**: **-storageName fabrikam -adminUsername $(vmusername) -adminPassword $(password) -azureKeyVaultName $(fabrikamFibre)**.<br/>If the parameter value you're using has multiple words, enclose them in quotes, even if you're passing them using variables. <br/>**For example**, **-name "parameter value" -name2 "$(var)"**. <br/>To override object type parameters use stringified JSON objects. <br/>**For example**, **-options ["option1"] -map {"key1": "value1" }**.|
+|`deploymentMode`<br/>Deployment mode|(Required) Incremental mode handles deployments as incremental updates to the resource group. It leaves unchanged resources that exist in the resource group but are not specified in the template. Complete mode deletes resources that are not in your template. Validate mode enables you to find problems with the template before creating actual resources. Note that this mode always creates a resource group, even if no resources are deployed. <br/>Default value: `Incremental`|
 |`enableDeploymentPrerequisites`<br/>Enable prerequisites|(Optional) These options would be applicable only when the Resource group contains virtual machines. Choosing Deployment Group option would configure Deployment Group agent on each of the virtual machines. Selecting WinRM option configures Windows Remote Management (WinRM) listener over HTTPS protocol on port 5986, using a self-signed certificate. This configuration is required for performing deployment operation on Azure machines. If the target Virtual Machines are backed by a Load balancer, ensure Inbound NAT rules are configured for target port (5986). <br/>Default value: `None`|
 |`deploymentGroupEndpoint`<br/>Azure Pipelines service connection|(Required) Specify the service connection to connect to an Azure DevOps organization or collection for agent registration.<br><br>You can create a service connection using **+New**, and select **Token-based authentication**. You need a [personal access token (PAT)](/vsts/accounts/use-personal-access-tokens-to-authenticate) to set up a service connection. <br/> ​Click **Manage** to update the service connection details. <br/>Argument aliases: `teamServicesConnection`|
 |`project`<br/>Team project|(Required) Specify the Team project which has the Deployment Group defined in it. <br/>Argument aliases: `teamProject`|
@@ -83,11 +83,11 @@ Besides enabling CORS, ensure that the SAS token specified in the link of the te
 
 #### Azure Pipelines Agent
 
-If the issue is coming from Azure Pipelines agent, you can increase the timeout by setting timeoutInMinutes as key in the YAML to 0. Check out this article for more details: https://docs.microsoft.com/azure/devops/pipelines/process/phases?tabs=yaml.
+If the issue is coming from Azure Pipelines agent, you can increase the timeout by setting timeoutInMinutes as key in the YAML to 0. For more information, see [Specify jobs in your pipeline](../../process/phases.md).
 
 #### Portal Deployment
 
-Check out this doc on how to identify if the error came from the Azure portal: https://docs.microsoft.com/azure/azure-resource-manager/templates/deployment-history?tabs=azure-portal.
+Check out this doc on how to identify if the error came from the Azure portal: [View deployment history with Azure Resource Manager](/azure/azure-resource-manager/templates/deployment-history).
 
 In case of portal deployment, try setting "timeoutInMinutes" in the ARM template to "0". If not specified, the value assumed is 60 minutes. 0 makes sure the deployment will run for as long as it can to succeed.
 
@@ -95,10 +95,11 @@ This could also be happening because of transient issues in the system. Keep an 
 
 ### Error: Azure Resource Manager (ARM) template failed validation
 
-This issue happens mostly because of an invalid parameter in the ARM Template, such as an unsupported SKU or Region. If the validation has failed, please check the error message. It should point you to the resource and parameter that is invalid. 
+This issue happens mostly because of an invalid parameter in the ARM template, such as an unsupported SKU or region. If the validation fails, check the error message. It should point you to the resource and parameter that's invalid.
 
-In addition, refer to this article regarding structure and syntax of ARM Templates: https://docs.microsoft.com/azure/azure-resource-manager/templates/template-syntax.
-
+This issue also might occur because of multiline strings. Currently, the Azure Resource Group Deployment task doesn't support multiline strings in an ARM template or parameter JSON file.
+  
+In addition, refer to this article regarding structure and syntax of ARM Templates: [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/template-syntax).
 
 ## Open source
 

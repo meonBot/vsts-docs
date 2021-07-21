@@ -6,7 +6,7 @@ ms.technology: devops-agile
 ms.assetid: 1399B4B1-72AE-4328-AAD8-3AAF0B808761
 ms.author: kaelli
 author: KathrynEE
-ms.custom: contperf-fy20q4
+ms.custom: "contperf-fy20q4, linked-from-support"
 ms.topic: tutorial
 monikerRange: '>= tfs-2013'
 ms.date: 07/09/2020
@@ -35,7 +35,7 @@ In this article you'll learn how to perform the following tasks:
 > * Open a work item from Excel to add additional information (opens in web portal)  
 > * Edit Area and Iteration Paths (opens in web portal)   
 
-For information about connecting to Excel, see [Connect Azure Boards to an Office client](track-work.md). For answers to specific questions about the integration of Excel and Azure DevOps, see [FAQs: Work in Excel connected to Azure Boards ](faqs.md).  
+For information about connecting to Excel, see [Connect Azure Boards to an Office client](track-work.md). For answers to specific questions about the integration of Excel and Azure DevOps, see [FAQs: Work in Excel connected to Azure Boards ](faqs.yml).  
 
 ::: moniker range=">= azure-devops-2020"
 
@@ -689,7 +689,7 @@ To resolve publishing errors that arise when working in Excel, see one of the fo
 
 - [Bulk modify work items (web portal)](../../backlogs/bulk-modify-work-items.md)  
 - [Azure DevOps Office integration issues](tfs-office-integration-issues.md)
-- [FAQs: Work in Excel connected to Azure Boards](faqs.md) 
+- [FAQs: Work in Excel connected to Azure Boards](faqs.yml) 
 - [Bulk import or update work items using CSV files](../../queries/import-work-items-from-csv.md)
 - [View and add work items, az boards work-item create](../../work-items/view-add-work-items.md#add-work-item) 
 - [Basic Excel tasks](https://support.office.com/article/basic-tasks-in-excel-dc775dd1-fa52-430f-9c3c-d998d1735fca) 
@@ -700,7 +700,7 @@ To resolve publishing errors that arise when working in Excel, see one of the fo
 
 - [Bulk modify work items (web portal)](../../backlogs/bulk-modify-work-items.md)  
 - [Azure DevOps Office integration issues](tfs-office-integration-issues.md)
-- [FAQs: Work in Excel connected to Azure Boards](faqs.md) 
+- [FAQs: Work in Excel connected to Azure Boards](faqs.yml) 
 - [Create Excel reports from a work item query](../../../report/create-status-and-trend-excel-reports.md)
 - [Basic Excel tasks](https://support.office.com/article/basic-tasks-in-excel-dc775dd1-fa52-430f-9c3c-d998d1735fca) 
 

@@ -118,7 +118,7 @@ Create a folder named `Get-Hello`. Within that folder create a `Get-Hello.psm1` 
     RootModule = 'Get-Hello.psm1'
     ```
 
-4. The `FunctionsToExport = @()` section is meant to define the module's exported functions. This is simply a list of all exported functions. Take following is an example from `PowerShellGet.psd1`:
+4. The `FunctionsToExport = @()` section is meant to define the module's exported functions. This is simply a list of all exported functions. The following is an example from `PowerShellGet.psd1`:
 
     ```powershell
     FunctionsToExport = @('Install-Module',
@@ -147,6 +147,9 @@ Create a folder named `Get-Hello`. Within that folder create a `Get-Hello.psm1` 
                           'Unregister-PSRepository',
                           'Update-ModuleManifest')
     ```
+    
+    > [!TIP]
+    > Your module manifest should export the `Get-Hello` function you created in Step 1.
     
 5. It is also possible to define a list of files as part of your module. Just add this list under `FileList=@()`.
 
@@ -185,7 +188,7 @@ We now have the module and the module manifest. We are ready to package it and p
        <description>The module says hello to the user</description>
        <releaseNotes>This is the newest I know of.</releaseNotes>
        <copyright>Copyright 2019</copyright>
-       <tags>Francis Totten</tags>
+       <tags>PSModule</tags>
        <dependencies>
        </dependencies>
      </metadata>
@@ -232,7 +235,7 @@ We now have a private repository within Azure Artifacts that we can push our Pow
 
 1. Open an elevated PowerShell prompt
 
-2. Set up authentication to access Azure artifact feeds. Replace the placeholders with your personal access token and email:
+2. Set up authentication to access Azure Artifacts feeds. Replace the placeholders with your personal access token and email:
 
     ```powershell
         $patToken = "YOUR PERSONAL ACCESS TOKEN" | ConvertTo-SecureString -AsPlainText -Force
@@ -244,21 +247,24 @@ We now have a private repository within Azure Artifacts that we can push our Pow
 
 3. Register your PowerShell repository. The `SourceLocation` link can also be found by selecting **Connect to Feed** then **NuGet.exe** from the feed's page in Azure Artifacts.
 
+    > [!NOTE]
+    > For organization-scoped feeds, omit `<project_name>` from the PublishLocation and SourceLocation URLs.
+
     ```powershell
         Register-PSRepository -Name "PowershellAzureDevopsServices" -SourceLocation "https://pkgs.dev.azure.com/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2" -PublishLocation "https://pkgs.dev.azure.com/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2" -InstallationPolicy Trusted -Credential $credsAzureDevopsServices
     ```
     
     > [!IMPORTANT]
-    > PowerShell does not support Version 3 of NuGet.
+    > PowerShell does not support version 3 of NuGet.
     
     If you're still using the older `visualstudio.com` URLs, use the following command instead:
 
     ```powershell
         Register-PSRepository -Name "PowershellAzureDevopsServices" -SourceLocation "https://<org_name>.pkgs.visualstudio.com/<project_name>/_packaging/<feed_name>/nuget/v2" -PublishLocation "https://<org_name>.pkgs.visualstudio.com/<project_name>/_packaging/<feed_name>/nuget/v2" -InstallationPolicy Trusted -Credential $credsAzureDevopsServices
     ```
-
-    > [!TIP]
-    > Certain versions of PowerShell requires restarting a new session after executing `Register-PSRepository` cmdlet to avoid the `Unable to resolve package source` warning. 
+   
+    > [!NOTE]
+    > In some versions of PowerShell, you must restart with a new session after you run the `Register-PSRepository` cmdlet to avoid the `Unable to resolve package source` warning. 
 
 4. To confirm that the repository was registered successfully run the `Get-PSRepository` cmdlet. This command gets all module repositories registered for the current user:
 

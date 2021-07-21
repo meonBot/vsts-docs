@@ -1,6 +1,6 @@
 ---
-title: Secure and share packages using feed permissions
-description: Secure and share packages using feed permissions in Azure Artifacts for Azure DevOps Services, Azure DevOps Server, or Team Foundation Server. This article will help you understand feeds and views permissions by giving you an overview of the feeds and views permissions and walk you through the process of sharing your packages within your org as well as public users.
+title: Manage packages with feed permissions
+description: Set up feed permissions in Azure Artifacts
 ms.assetid: 70313C3C-2E52-4FFC-94C2-41F1E37C9D26
 ms.technology: devops-artifacts
 ms.topic: conceptual
@@ -8,7 +8,7 @@ ms.date: 09/14/2020
 monikerRange: '>= tfs-2017'
 ---
 
-# Secure and share packages using feed permissions
+# Manage packages with feed permissions
 
 **Azure DevOps Services | Azure DevOps Server 2020 | Azure DevOps Server 2019 | TFS 2018 | TFS 2017**
 
@@ -18,16 +18,17 @@ The packages you host in Azure Artifacts are stored in a **feed**. Setting permi
 
 Feeds have four levels of access: Owners, Contributors, Collaborators, and Readers. Owners can add any type of identity-individuals, teams, and groups-to any access level.
 
-| Permission | Reader | Collaborator | Contributor | Owner |
-| ---------- | ------ | ------------ | ----------- | ----- |
-| List, install, and restore packages           | &#x2713; | &#x2713; | &#x2713; | &#x2713; |
-| Push packages                                 |          |          | &#x2713; | &#x2713; |
-| Unlist/deprecate packages                     |          |          | &#x2713; | &#x2713; |
-| Delete/unpublish package                      |          |          |          | &#x2713; |
-| Promote a package to a view                   |          |          | &#x2713; | &#x2713; |
-| Add/remove upstream sources                   |          |          |          | &#x2713; |
-| Save packages from upstream sources           |          | &#x2713; | &#x2713; | &#x2713; |
-| Edit feed permissions                         |          |          |          | &#x2713; |
+|                   Permission                  |  Reader  | Collaborator | Contributor |   Owner  |
+| --------------------------------------------- | -------- | ------------ | ----------- | -------- |
+| List, install, and restore packages           | &#x2713; |   &#x2713;   |   &#x2713;  | &#x2713; |
+| Push packages                                 |          |              |   &#x2713;  | &#x2713; |
+| Unlist/deprecate packages                     |          |              |   &#x2713;  | &#x2713; |
+| Delete/unpublish package                      |          |              |             | &#x2713; |
+| Promote a package to a view                   |          |              |   &#x2713;  | &#x2713; |
+| Add/remove upstream sources                   |          |              |             | &#x2713; |
+| Save packages from upstream sources           |          |   &#x2713;   |   &#x2713;  | &#x2713; |
+| Edit feed permissions                         |          |              |             | &#x2713; |
+| Allow external package versions               |          |              |             | &#x2713; |
 
 By default, the Project Collection Build Service is a Contributor and your project team is a Reader.
 

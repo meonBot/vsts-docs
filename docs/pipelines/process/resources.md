@@ -4,7 +4,7 @@ ms.custom: seodec18
 description: How to use resources with YAML definitions.
 ms.topic: conceptual
 ms.assetid: b3ca305c-b587-4cb2-8ac5-52f6bd46c25e
-ms.date: 12/01/2020
+ms.date: 07/12/2021
 monikerRange: azure-devops
 ---
 
@@ -20,7 +20,7 @@ A resource is anything used by a pipeline that lives outside the pipeline. Pipel
 
 ## Why resources?
 
-Resources are defined at one place and can be consumed anywhere in your pipeline. Resources provide you the full traceability of the services consumed in your pipeline including the version, artifacts, associated commits, and work-items. You can fully automate your DevOps workflow by subscribing to trigger events on your resources.
+Resources are defined at one place and can be consumed anywhere in your pipeline. Resources provide you the full traceability of the services consumed in your pipeline including the version, artifacts, associated commits, and work items. You can fully automate your DevOps workflow by subscribing to trigger events on your resources.
 
 Resources in YAML represent sources of types pipelines, builds, repositories, containers, and packages. 
 
@@ -33,6 +33,7 @@ resources:
   repositories: [ repository ]
   containers: [ container ]
   packages: [ package ]
+  webhooks: [ webhook ]
 ```
 
 ### Variables
@@ -355,7 +356,7 @@ You can customize the download behavior for each deployment or job.
 
 ## Resources: `repositories`
 
-If your pipeline has [templates in another repository](../process/templates.md), or if you want to use [multi-repo checkout](../repos/multi-repo-checkout.md) with a repository that requires a service connection, you must let the system know about that repository. 
+If your pipeline has [templates in another repository](../process/templates.md#use-other-repositories), or if you want to use [multi-repo checkout](../repos/multi-repo-checkout.md) with a repository that requires a service connection, you must let the system know about that repository. 
 The `repository` keyword lets you specify an external repository.
 
 ## [Schema](#tab/schema)
@@ -491,10 +492,16 @@ resources:          # types: pipelines | repositories | containers | builds | pa
     registry: string # registry for container images
     repository: string # name of the container image repository in ACR
     trigger: # Triggers are not enabled by default and need to be set explicitly
+      enabled: boolean # set to 'true' to trigger on all image tags if 'tags' is unset.
       tags:
         include: [ string ]  # image tags to consider the trigger events, optional; defaults to any new tag
         exclude: [ string ]  # image tags on discard the trigger events, optional; defaults to none
 ```
+
+> [!NOTE]
+> The syntax that's used to enable container triggers for all image tags (that is, `enabled: 'true'`) is different from the syntax that's used for other resource triggers. Pay close attention to using the correct syntax for a specific resource.
+
+
 ## [Example](#tab/example)
 
 ```yaml
@@ -613,8 +620,8 @@ Here are the steps to configure the webhook triggers:
     - Secret - This is optional. If you need to secure your JSON payload, provide the **Secret** value
 2. Create a new "Incoming Webhook" service connection. This is a newly introduced Service Connection Type that will allow you to define three important pieces of information:
     - **Webhook Name**: The name of the webhook should match webhook created in your external service.
-    - **HTTP Header** - The name of the HTTP header in the request that contains the payload hash value for request verification. For example, in the case of the GitHub, the request header will be "**X-Hub-Signature**"
-    - **Secret** - The secret is used to parse the payload hash used for verification of the incoming request (this is optional). If you have used a secret in creating your webhook, you will need to provide the same secret key 
+    - **HTTP Header** - The name of the HTTP header in the request that contains the payload's HMAC-SHA1 hash value for request verification. For example, in the case of the GitHub, the request header will be "**X-Hub-Signature**"
+    - **Secret** - The secret is used to verify the payload's HMAC-SHA1 hash used for verification of the incoming request (this is optional). If you have used a secret in creating your webhook, you will need to provide the same secret key 
   
 ![Incoming Webhook Service connection](media/incoming-webhook.png)
 
@@ -695,10 +702,10 @@ For every pipeline run, we show the info about the
  ![Consumed artifacts in pipeline run](media/runs-consumed-artifacts.png)
 3. Commits associated with each resource.
 ![Commits in pipeline run](media/runs-commits.png)
-4. Work-items for each resource.
+4. Work items for each resource.
 
 ### Environment traceability
-Whenever a pipeline deploys to an environment, you can see a list of resources that are consumed in the environments view. This view includes resources consumed as part of the deployment-jobs and their associated commits and work-items.
+Whenever a pipeline deploys to an environment, you can see a list of resources that are consumed in the environments view. This view includes resources consumed as part of the deployment-jobs and their associated commits and work items.
 ![Commits in environment](media/environments-commits.png)
 
 ### Showing associated CD pipelines info in CI pipelines
@@ -706,7 +713,7 @@ To provide end to end traceability, user should be able to track which CD pipeli
 ![CD pipelines info in CI pipeline](media/cdinfo-in-ci-pipelines.png)
 
 ### YAML resource trigger issues support and traceability
-It can be confusing when pipeline triggers fail to execute. To help better understand this, we've added a new menu item in the pipeline definition page called **Trigger Issues** where you can learn why triggers are not executing. To access this page, open your pipeline history. Select **Trigger Issues** in the menu. 
+It can be confusing when pipeline triggers fail to execute. To help better understand this, we've added a new menu item in the pipeline definition page called **Trigger Issues** where you can learn why triggers are not executing. To access this page, open your pipeline history. Select **Trigger Issues** in the menu. The **Trigger Issues** option will only appear for non-repository resources. 
 
 :::image type="content" source="media/trigger-menu.png" alt-text="Select Trigger Issues from the navigation.":::
 
@@ -719,7 +726,7 @@ Resource triggers can fail to execute for two reasons.
 
 ### Why should I use pipelines `resources` instead of the `download` shortcut? 
 
-Using a `pipelines` resource is a first class way to consume artifacts from a CI pipeline and also configure automated triggers. It gives you full visibility into the process by displaying the version consumed, artifacts, commits, and work-items. When you define a pipeline resource, the associated artifacts are automatically downloaded in deployment jobs. 
+Using a `pipelines` resource is a first class way to consume artifacts from a CI pipeline and also configure automated triggers. It gives you full visibility into the process by displaying the version consumed, artifacts, commits, and work items. When you define a pipeline resource, the associated artifacts are automatically downloaded in deployment jobs. 
 
 You can choose to download the artifacts in build jobs or to override the download behavior in deployment jobs with `download`. The `download` task internally uses the [Download Pipeline Artifacts task](../tasks/utility/download-pipeline-artifact.md).
 
